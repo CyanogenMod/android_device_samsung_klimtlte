@@ -507,10 +507,10 @@ service mobicore /system/bin/mcDriverDaemon -r /system/app/FFFFFFFF0000000000000
 # LPM
 on charger
     mount ext4 /dev/block/mmcblk0p18 /system wait ro
-    class_start sec-charger
+    class_start charger
 
-service sec-playlpm /system/bin/lpm
-    class sec-charger
+service charger /charger
+    class charger
     critical
 
 # service for TZPR provisioning version check app

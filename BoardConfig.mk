@@ -64,7 +64,9 @@ TARGET_KERNEL_SOURCE := kernel/samsung/klimtwifi
 # KERNEL_TOOLCHAIN := /home/cmbuild/android/prebuilts/gcc/linux-x86/arm/arm-eabi-4.6/bin
 
 # Battery
+BOARD_CHARGING_MODE_BOOTING_LPM := /sys/class/power_supply/battery/batt_lp_charging
 BOARD_BATTERY_DEVICE_NAME := battery
+BOARD_CHARGER_SHOW_PERCENTAGE := true
 
 # Bootloader
 TARGET_BOOTLOADER_BOARD_NAME := universal5420
