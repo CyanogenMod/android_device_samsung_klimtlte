@@ -38,13 +38,27 @@ import com.android.internal.telephony.uicc.IccCardApplicationStatus;
 import com.android.internal.telephony.uicc.IccCardStatus;
 
 /**
- * RIL customization for tab s LTE devices
+ * RIL customization for Galaxy Tab S LTE devices
  *
  * {@hide}
  */
 public class KlimtLteRIL extends RIL {
 
+    private static final int RIL_UNSOL_RESPONSE_IMS_NETWORK_STATE_CHANGED = 1036;
     private static final int RIL_REQUEST_DIAL_EMERGENCY = 10016;
+    private static final int RIL_UNSOL_RELEASE_COMPLETE_MESSAGE = 11001;
+    private static final int RIL_UNSOL_STK_CALL_CONTROL_RESULT = 11003;
+    private static final int RIL_UNSOL_DEVICE_READY_NOTI = 11008;
+    private static final int RIL_UNSOL_GPS_NOTI = 11009;
+    private static final int RIL_UNSOL_AM = 11010;
+    private static final int RIL_UNSOL_DUN_PIN_CONTROL_SIGNAL = 11011;
+    private static final int RIL_UNSOL_DATA_SUSPEND_RESUME = 11012;
+    private static final int RIL_UNSOL_HSDPA_STATE_CHANGED = 11016;
+    private static final int RIL_UNSOL_WB_AMR_STATE = 11017;
+    private static final int RIL_UNSOL_UART = 11020;
+    private static final int RIL_UNSOL_RESPONSE_HANDOVER = 11021;
+    private static final int RIL_UNSOL_PCMCLOCK_STATE = 11022;
+    private static final int RIL_LTE_UNSOL_LAST = 11036;
 
     private final AudioManager mAudioManager;
 
@@ -259,31 +273,47 @@ public class KlimtLteRIL extends RIL {
         int response = p.readInt();
 
         switch(response) {
-            // SAMSUNG STATES
-            case 11008: // RIL_DEVICE_READY:
+            case RIL_UNSOL_RESPONSE_IMS_NETWORK_STATE_CHANGED:
                 ret = responseVoid(p);
                 break;
-            case 11010: // RIL_UNSOL_AM:
+            case RIL_UNSOL_RELEASE_COMPLETE_MESSAGE:
+                ret = responseVoid(p);
+                break;
+            case RIL_UNSOL_STK_CALL_CONTROL_RESULT:
+                ret = responseVoid(p);
+                break;
+            case RIL_UNSOL_DEVICE_READY_NOTI:
+                ret = responseVoid(p);
+                break;
+            case RIL_UNSOL_GPS_NOTI:
+                ret = responseVoid(p);
+                break;
+            case RIL_UNSOL_AM:
                 ret = responseString(p);
-                String amString = (String) ret;
-                Rlog.d(RILJ_LOG_TAG, "Executing AM: " + amString);
-
-                try {
-                    Runtime.getRuntime().exec("am " + amString);
-                } catch (IOException e) {
-                    e.printStackTrace();
-                    Rlog.e(RILJ_LOG_TAG, "am " + amString + " could not be executed.");
-                }
                 break;
-            case 11021: // RIL_UNSOL_RESPONSE_HANDOVER:
+            case RIL_UNSOL_DUN_PIN_CONTROL_SIGNAL:
                 ret = responseVoid(p);
                 break;
-            case 1036:
-                ret = responseVoid(p);
-                break;
-            case 11017: // RIL_UNSOL_WB_AMR_STATE:
+            case RIL_UNSOL_DATA_SUSPEND_RESUME:
                 ret = responseInts(p);
-                setWbAmr(((int[])ret)[0]);
+                break;
+            case RIL_UNSOL_HSDPA_STATE_CHANGED:
+                ret = responseInts(p);
+                break;
+            case RIL_UNSOL_WB_AMR_STATE:
+                ret = responseInts(p);
+                break;
+            case RIL_UNSOL_UART:
+                ret = responseInts(p);
+                break;
+            case RIL_UNSOL_RESPONSE_HANDOVER:
+                ret = responseVoid(p);
+                break;
+            case RIL_UNSOL_PCMCLOCK_STATE:
+                ret = responseVoid(p);
+                break;
+            case RIL_LTE_UNSOL_LAST:
+                ret = responseVoid(p);
                 break;
             default:
                 // Rewind the Parcel
@@ -304,18 +334,22 @@ public class KlimtLteRIL extends RIL {
         int dataPosition = p.dataPosition(); // save off position within the Parcel
         serial = p.readInt();
         error = p.readInt();
+        
         RILRequest rr = null;
+        
         /* Pre-process the reply before popping it */
         synchronized (mRequestList) {
             RILRequest tr = mRequestList.get(serial);
             if (tr != null && tr.mSerial == serial) {
                 if (error == 0 || p.dataAvail() > 0) {
-                    try {switch (tr.mRequest) {
+                    try {
+                        switch (tr.mRequest) {
                             /* Get those we're interested in */
-                        case RIL_REQUEST_DATA_REGISTRATION_STATE:
-                            rr = tr;
-                            break;
-                    }} catch (Throwable thr) {
+                            case RIL_REQUEST_DATA_REGISTRATION_STATE:
+                                rr = tr;
+                                break;
+                        }
+                    } catch (Throwable thr) {
                         // Exceptions here usually mean invalid RIL responses
                         if (tr.mResult != null) {
                             AsyncResult.forMessage(tr.mResult, null, thr);
@@ -326,27 +360,35 @@ public class KlimtLteRIL extends RIL {
                 }
             }
         }
+        
         if (rr == null) {
             /* Nothing we care about, go up */
             p.setDataPosition(dataPosition);
+            
             // Forward responses that we are not overriding to the super class
             return super.processSolicited(p);
         }
+        
         rr = findAndRemoveRequestFromList(serial);
+        
         if (rr == null) {
             return rr;
         }
         Object ret = null;
+        
         if (error == 0 || p.dataAvail() > 0) {
             switch (rr.mRequest) {
-                case RIL_REQUEST_DATA_REGISTRATION_STATE: ret = responseDataRegistrationState(p); break;
+                case RIL_REQUEST_DATA_REGISTRATION_STATE: 
+                    ret = responseDataRegistrationState(p); break;
                 default:
                     throw new RuntimeException("Unrecognized solicited response: " + rr.mRequest);
             }
             //break;
         }
+        
         if (RILJ_LOGD) riljLog(rr.serialString() + "< " + requestToString(rr.mRequest)
                                + " " + retToString(rr.mRequest, ret));
+                               
         if (rr.mResult != null) {
             AsyncResult.forMessage(rr.mResult, ret, null);
             rr.mResult.sendToTarget();

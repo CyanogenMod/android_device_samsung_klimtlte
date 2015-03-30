@@ -5,10 +5,6 @@ vendor/firmware/srp_vliw.bin
 
 # Bluetooth
 vendor/firmware/bcm4350.hcd
-vendor/firmware/bcm4350_A0.hcd
-vendor/firmware/bcm4350_murata.hcd
-vendor/firmware/bcm4350_semco.hcd
-vendor/firmware/BT_FW_VER_BCM4354_003.001.012.0197.0319_Klint_3G_WIFI_ORC.hcd
 
 # Camera
 lib/hw/camera.vendor.universal5420.so
@@ -27,7 +23,6 @@ lib/libsecnativefeature.so
 lib/libvdis.so
 
 # DRM
-bin/drmserver.samsung
 lib/libstagefright_hdcp.so
 vendor/lib/libdrmdecrypt.so
 vendor/lib/liboemcrypto.so
@@ -38,13 +33,6 @@ vendor/lib/libWVStreamControlAPI_L1.so
 vendor/lib/drm/libdrmwvmplugin.so
 vendor/lib/mediadrm/libdrmclearkeyplugin.so
 vendor/lib/mediadrm/libwvdrmengine.so
-
-lib/omx/libOMX.Exynos.AVC.Decoder.so
-lib/omx/libOMX.Exynos.AVC.Encoder.so
-lib/omx/libOMX.Exynos.MPEG4.Decoder.so
-lib/omx/libOMX.Exynos.MPEG4.Encoder.so
-lib/omx/libOMX.Exynos.VP8.Decoder.so
-lib/omx/libOMX.Exynos.VP8.Encoder.so
 
 # Graphics
 vendor/lib/egl/libGLES_mali.so
@@ -105,3 +93,7 @@ etc/wifi/nvram_net.txt
 # Input
 usr/idc/Synaptics_HID_TouchPad.idc
 usr/keylayout/gpio-keys.kl
+
+# Radio
+lib/libsec-ril.so
+bin/cbd
