@@ -95,5 +95,7 @@ usr/idc/Synaptics_HID_TouchPad.idc
 usr/keylayout/gpio-keys.kl
 
 # Radio
+lib/libril.so
 lib/libsec-ril.so
 bin/cbd
+bin/rild
