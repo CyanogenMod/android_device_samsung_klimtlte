@@ -169,6 +169,10 @@ PRODUCT_PACKAGES += \
 # Recovery
 PRODUCT_PACKAGES += \
     init.recovery.universal5420.rc
+    
+# Samsung Service Mode    
+PRODUCT_PACKAGES += \
+    SamsungServiceMode
 
 # Sensors
 PRODUCT_PACKAGES += \
