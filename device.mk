@@ -169,14 +169,18 @@ PRODUCT_PACKAGES += \
 # Recovery
 PRODUCT_PACKAGES += \
     init.recovery.universal5420.rc
+    
+# Samsung Service Mode    
+PRODUCT_PACKAGES += \
+    SamsungServiceMode
 
 # Sensors
 PRODUCT_PACKAGES += \
     sensors.universal5420
 
-# Torch
-PRODUCT_PACKAGES += \
-    Torch
+PRODUCT_COPY_FILES += \
+    $(LOCAL_PATH)/configs/PARAM.ini:system/etc/PARAM.ini \
+    $(LOCAL_PATH)/configs/PDC.ini:system/etc/PDC.ini
 
 # Wifi
 PRODUCT_COPY_FILES += \
