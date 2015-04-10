@@ -153,6 +153,7 @@ BOARD_SEPOLICY_UNION += \
 	init.te \
 	mediaserver.te \
 	servicemanager.te \
+        service_contexts \
 	system_app.te \
 	system_server.te \
 	vold.te \
