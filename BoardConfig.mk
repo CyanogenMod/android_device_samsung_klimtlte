@@ -53,6 +53,9 @@ BOARD_HARDWARE_CLASS += device/samsung/klimtlte/cmhw
 # Partitions
 BOARD_USERDATAIMAGE_PARTITION_SIZE := 12629049344
 
+# Disable journaling on system.img to save space
+BOARD_SYSTEMIMAGE_JOURNAL_SIZE := 0
+
 # PowerHAL
 TARGET_POWERHAL_VARIANT := klimtlte
 
