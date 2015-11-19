@@ -129,5 +129,9 @@ PRODUCT_COPY_FILES += \
 PRODUCT_PACKAGES += \
     charger_res_images
 
+# IO Scheduler
+PRODUCT_PROPERTY_OVERRIDES += \
+    sys.io.scheduler=bfq
+
 # call the proprietary setup
 $(call inherit-product-if-exists, vendor/samsung/klimtlte/klimtlte-vendor.mk)
