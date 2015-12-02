@@ -1,9 +1,5 @@
 [
     {
-        "repository": "android_kernel_samsung_klimtwifi",
-        "target_path": "kernel/samsung/klimtwifi"
-    },
-    {
         "repository": "android_hardware_samsung",
         "target_path": "hardware/samsung"
     },
