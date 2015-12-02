@@ -40,7 +40,7 @@ BOARD_FLASH_BLOCK_SIZE := 4096
 TARGET_OTA_ASSERT_DEVICE := klimtlte
 
 # Kernel
-TARGET_KERNEL_CONFIG := klimtlte_01_defconfig
+TARGET_KERNEL_CONFIG := cyanogenmod_deathly_klimtlte_defconfig
 TARGET_KERNEL_SOURCE := kernel/samsung/klimtwifi
 
 # Battery
