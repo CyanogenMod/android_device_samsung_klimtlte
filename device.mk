@@ -14,42 +14,10 @@
 # limitations under the License.
 #
 
-# Inherit from exynos5420-common
-$(call inherit-product, device/samsung/exynos5420-common/exynos5420-common.mk)
+# Inherit from klimt-common
+$(call inherit-product, device/samsung/klimt-common/klimt-common.mk)
 
 LOCAL_PATH := device/samsung/klimtlte
-
-# Device uses high-density artwork where available
-PRODUCT_AAPT_CONFIG := normal xlarge
-PRODUCT_AAPT_PREF_CONFIG := xhdpi
-
-# Camera
-PRODUCT_PACKAGES += \
-    camera.universal5420 \
-    libhwjpeg
-
-# GPS
-PRODUCT_PACKAGES += \
-    gps.universal5420
-
-# HW composer
-PRODUCT_PACKAGES += \
-    libion \
-    hwcomposer.exynos5 \
-    gralloc.exynos5 \
-    memtrack.exynos5
-
-# IR
-PRODUCT_PACKAGES += \
-    consumerir.universal5420
-
-# Power
-PRODUCT_PACKAGES += \
-    power.universal5420
-
-# Lights
-PRODUCT_PACKAGES += \
-    lights.universal5420
 
 # Audio
 PRODUCT_PACKAGES += \
@@ -63,11 +31,6 @@ PRODUCT_PACKAGES += \
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/configs/audio_effects.conf:system/etc/audio_effects.conf \
     $(LOCAL_PATH)/configs/audio_policy.conf:system/etc/audio_policy.conf
-
-# Keylayouts
-PRODUCT_COPY_FILES += \
-    $(LOCAL_PATH)/configs/sec_touchscreen.kl:system/usr/keylayout/sec_touchscreen.kl \
-    $(LOCAL_PATH)/configs/sec_touchkey.kl:system/usr/keylayout/sec_touchkey.kl
 
 # Media profile
 PRODUCT_COPY_FILES += \
@@ -100,22 +63,15 @@ PRODUCT_COPY_FILES += \
     frameworks/native/data/etc/android.hardware.bluetooth.xml:system/etc/permissions/android.hardware.bluetooth.xml \
     frameworks/native/data/etc/android.software.sip.voip.xml:system/etc/permissions/android.software.sip.voip.xml
 
-# Power
-PRODUCT_PACKAGES += \
-    power.universal5420
-
 PRODUCT_PACKAGES += \
     fstab.universal5420 \
-    init.samsung.rc \
     init.baseband.rc \
     init.universal5420.rc \
     ueventd.universal5420.rc
 
 # ril
 PRODUCT_PACKAGES += \
-    cbd \
-    libsecril-client \
-    libsecril-client-sap
+    cbd
 
 # Samsung Service Mode    
 PRODUCT_PACKAGES += \
@@ -124,14 +80,6 @@ PRODUCT_PACKAGES += \
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/configs/PARAM.ini:system/etc/PARAM.ini \
     $(LOCAL_PATH)/configs/PDC.ini:system/etc/PDC.ini
-
-# Charger
-PRODUCT_PACKAGES += \
-    charger_res_images
-
-# IO Scheduler
-PRODUCT_PROPERTY_OVERRIDES += \
-    sys.io.scheduler=bfq
 
 # call the proprietary setup
 $(call inherit-product-if-exists, vendor/samsung/klimtlte/klimtlte-vendor.mk)
