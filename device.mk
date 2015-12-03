@@ -20,7 +20,7 @@ $(call inherit-product, device/samsung/exynos5420-common/exynos5420-common.mk)
 LOCAL_PATH := device/samsung/klimtlte
 
 # Device uses high-density artwork where available
-PRODUCT_AAPT_CONFIG := normal
+PRODUCT_AAPT_CONFIG := normal xlarge
 PRODUCT_AAPT_PREF_CONFIG := xhdpi
 
 # Camera
