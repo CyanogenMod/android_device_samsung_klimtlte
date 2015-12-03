@@ -25,6 +25,15 @@ TARGET_OTA_ASSERT_DEVICE := klimtlte
 # Kernel
 TARGET_KERNEL_CONFIG := cyanogenmod_deathly_klimtlte_defconfig
 
+# SELinux
+BOARD_SEPOLICY_DIRS += \
+    device/samsung/klimtlte/sepolicy
+
+BOARD_SEPOLICY_UNION += \
+    device.te \
+    file_contexts \
+    rild.te
+
 # PowerHAL
 TARGET_POWERHAL_VARIANT := klimtlte
 
