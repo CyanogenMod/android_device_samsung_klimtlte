@@ -47,6 +47,10 @@ PRODUCT_PACKAGES += \
 PRODUCT_PACKAGES += \
     power.universal5420
 
+# Lights
+PRODUCT_PACKAGES += \
+    lights.universal5420
+
 # Audio
 PRODUCT_PACKAGES += \
     audio.primary.universal5420 \
