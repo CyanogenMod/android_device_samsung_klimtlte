@@ -158,6 +158,8 @@ on boot
     chown system radio /sys/class/sec/tsp/cmd
     chown system system /sys/class/input/input1/enabled
     chmod 0660 /sys/class/input/input1/enabled
+    chown system radio /sys/class/input/input1/wake_gesture
+    chmod 0660 /sys/class/input/input1/wake_gesture
     chown system radio /sys/class/sec/sec_touchscreen/set_tsp_for_inputmethod
 
 # Permissions for Touchkey
