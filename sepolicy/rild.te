@@ -8,4 +8,6 @@ allow rild radio_device:chr_file rw_file_perms;
 allow rild efs_block_device:blk_file rw_file_perms;
 allow rild efs_file:file { read open write setattr };
 allow rild proc_net:file write;
-allow rild block_device:dir search;
+allow rild block_device:dir { read search };
+allow rild mediaserver:file read;
+allow rild self:capability dac_override;

@@ -38,7 +38,8 @@ BOARD_SEPOLICY_DIRS += \
 BOARD_SEPOLICY_UNION += \
     device.te \
     file_contexts \
-    rild.te
+    rild.te \
+    vold.te
 
 # PowerHAL
 TARGET_POWERHAL_VARIANT := klimtlte

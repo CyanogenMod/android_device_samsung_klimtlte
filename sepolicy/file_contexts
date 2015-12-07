@@ -7,4 +7,4 @@
 /dev/umts_log           u:object_r:radio_device:s0
 /dev/umts_rfs0          u:object_r:radio_device:s0
 /dev/umts_router        u:object_r:radio_device:s0
-/dev/block/mmcblk0p13   u:object_r:efs_block_device:s0
+/dev/block/platform/dw_mmc\.0/by-name/RADIO   u:object_r:efs_block_device:s0
