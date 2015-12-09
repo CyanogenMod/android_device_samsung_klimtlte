@@ -23,7 +23,7 @@ LOCAL_PATH := device/samsung/klimtlte
 TARGET_OTA_ASSERT_DEVICE := klimtlte
 
 # Kernel
-TARGET_KERNEL_CONFIG := cyanogenmod_deathly_klimtlte_defconfig
+TARGET_KERNEL_CONFIG := cyanogenmod_klimtlte_defconfig
 
 # Partitions
 BOARD_BOOTIMAGE_PARTITION_SIZE := 8388608
