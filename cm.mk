@@ -10,4 +10,4 @@ PRODUCT_BUILD_PROP_OVERRIDES += \
     PRODUCT_MODEL=SM-T705 \
     PRODUCT_NAME=klimtlte \
     PRODUCT_DEVICE=klimtlte \
-    TARGET_DEVICE=klimtlte
+    TARGET_DEVICE=klimtlte \

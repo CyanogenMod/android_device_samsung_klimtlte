@@ -1,1 +1,1 @@
-allow vold efs_file:dir { open read ioctl getattr };
+allow vold vold_tmpfs:file create_file_perms;
